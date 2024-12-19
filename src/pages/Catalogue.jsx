@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IonIcon } from '@ionic/react';
 import { arrowForward } from 'ionicons/icons';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Catalogue = () => {
+  const [filterOption, setFilterOption] = useState('all');
+
+  const handleFilterChange = (option) => {
+    setFilterOption(option);
+  };
+
   return (
     <div>
-      <section className="section gallery" id="gallery" aria-label="photo gallery">
+      <Header />
+      <section className="section gallery" id="gallery" aria-label="photo gallery" style={{ backgroundColor: '#f5f5f5' }}>
         <div className="container">
           <div className="title-wrapper">
             <div>
@@ -15,99 +24,49 @@ const Catalogue = () => {
                 suspendisse
               </p>
             </div>
+            <div className="filter-buttons">
+              <button
+                className={`filter-btn ${filterOption === 'all' ? 'active' : ''}`}
+                onClick={() => handleFilterChange('all')}
+              >
+                All
+              </button>
+              <button
+                className={`filter-btn ${filterOption === 'men' ? 'active' : ''}`}
+                onClick={() => handleFilterChange('men')}
+              >
+                Men
+              </button>
+              <button
+                className={`filter-btn ${filterOption === 'women' ? 'active' : ''}`}
+                onClick={() => handleFilterChange('women')}
+              >
+                Women
+              </button>
+            </div>
             <a href="#" className="btn has-before">
               <span className="span">Explore More Gallery</span>
               <IonIcon name="arrow-forward" aria-hidden="true"></IonIcon>
             </a>
           </div>
           <ul className="grid-list">
-            <li>
-              <div className="gallery-card">
-                <figure className="card-banner img-holder" style={{ '--width': 422, '--height': 550 }}>
-                  <img
-                    src="./assets/images/gallery-1.jpg"
-                    width="422"
-                    height="550"
-                    loading="lazy"
-                    alt="Hair Cutting"
-                    className="img-cover"
-                  />
-                </figure>
-                <div className="card-content">
-                  <h3 className="h3 card-title">Hair Cutting</h3>
-                  <p className="card-text">Barbers & Salon Services</p>
-                  <a href="#" className="card-btn" aria-label="Read more">
-                    <IonIcon name="arrow-forward" aria-hidden="true"></IonIcon>
-                  </a>
+            {Array.from({ length: 4 }, (_, i) => (
+              <li key={i}>
+                <div className="gallery-card" style={{ backgroundColor: '#ffffff' }}>
+                  <div className="card-content">
+                    <h3 className="h3 card-title">Gallery Item {i + 1}</h3>
+                    <p className="card-text">Description of the gallery item</p>
+                    <a href="#" className="card-btn" aria-label="Read more">
+                      <IonIcon name="arrow-forward" aria-hidden="true"></IonIcon>
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div className="gallery-card">
-                <figure className="card-banner img-holder" style={{ '--width': 422, '--height': 550 }}>
-                  <img
-                    src="./assets/images/gallery-2.jpg"
-                    width="422"
-                    height="550"
-                    loading="lazy"
-                    alt="Hair Cutting"
-                    className="img-cover"
-                  />
-                </figure>
-                <div className="card-content">
-                  <h3 className="h3 card-title">Hair Cutting</h3>
-                  <p className="card-text">Barbers & Salon Services</p>
-                  <a href="#" className="card-btn" aria-label="Read more">
-                    <IonIcon name="arrow-forward" aria-hidden="true"></IonIcon>
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="gallery-card">
-                <figure className="card-banner img-holder" style={{ '--width': 422, '--height': 550 }}>
-                  <img
-                    src="./assets/images/gallery-3.jpg"
-                    width="422"
-                    height="550"
-                    loading="lazy"
-                    alt="Hair Cutting"
-                    className="img-cover"
-                  />
-                </figure>
-                <div className="card-content">
-                  <h3 className="h3 card-title">Hair Cutting</h3>
-                  <p className="card-text">Barbers & Salon Services</p>
-                  <a href="#" className="card-btn" aria-label="Read more">
-                    <IonIcon name="arrow-forward" aria-hidden="true"></IonIcon>
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="gallery-card">
-                <figure className="card-banner img-holder" style={{ '--width': 422, '--height': 550 }}>
-                  <img
-                    src="./assets/images/gallery-4.jpg"
-                    width="422"
-                    height="550"
-                    loading="lazy"
-                    alt="Hair Cutting"
-                    className="img-cover"
-                  />
-                </figure>
-                <div className="card-content">
-                  <h3 className="h3 card-title">Hair Cutting</h3>
-                  <p className="card-text">Barbers & Salon Services</p>
-                  <a href="#" className="card-btn" aria-label="Read more">
-                    <IonIcon name="arrow-forward" aria-hidden="true"></IonIcon>
-                  </a>
-                </div>
-              </div>
-            </li>
+              </li>
+            ))}
           </ul>
         </div>
       </section>
+      <Footer />
     </div>
   );
 };
