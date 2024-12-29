@@ -11,7 +11,7 @@ const About = () => {
           <div className="about-card">
             <figure className="card-banner img-holder" style={{ '--width': 600, '--height': 800 }}>
               <img
-                src="./assets/images/about-image.jpg"
+                src="../assets/pexels-cottonbro-3997391.jpg"
                 width="600"
                 height="800"
                 loading="lazy"
